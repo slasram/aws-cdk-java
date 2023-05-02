@@ -2,10 +2,17 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+    <!-- Parent Description -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.11</version>
+    </parent>
     <!-- Project Description -->
     <groupId>fr.sisram</groupId>
-    <artifactId>cdk-infrastructure</artifactId>
+    <artifactId>aws-cdk-lambda-springboot</artifactId>
     <version>0.0.1</version>
+    <packaging>pom</packaging>
     <!-- Properties -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,29 +23,13 @@
         <constructs.version>[10.0.0,11.0.0)</constructs.version>
         <commons-cli.version>1.5.0</commons-cli.version>
         <lombok.version>1.18.24</lombok.version>
+        <aws-serverless-java-container-springboot2.version>1.9.3</aws-serverless-java-container-springboot2.version>
     </properties>
-    <!-- Build Configuration -->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>${exec-maven-plugin}</version>
-                <configuration>
-                    <mainClass>fr.sisram.cdk.infrastructure.InfrastructureApp</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <!-- Modules -->
+    <modules>
+        <module>aws-infrastructure</module>
+        <module>aws-lambda-springboot</module>
+    </modules>
     <!-- Dependency Management Configuration -->
     <dependencyManagement>
         <dependencies>
@@ -53,6 +44,11 @@
                 <version>${constructs.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.amazonaws.serverless</groupId>
+                <artifactId>aws-serverless-java-container-springboot2</artifactId>
+                <version>${aws-serverless-java-container-springboot2.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
@@ -60,20 +56,25 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <!-- Dependency Configuration -->
-    <dependencies>
-        <dependency>
-            <groupId>software.amazon.awscdk</groupId>
-            <artifactId>aws-cdk-lib</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>software.constructs</groupId>
-            <artifactId>constructs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <!-- Build Configuration -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${exec-maven-plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
