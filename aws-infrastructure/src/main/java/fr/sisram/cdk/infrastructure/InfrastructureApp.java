@@ -1,12 +1,7 @@
 package fr.sisram.cdk.infrastructure;
 
 import fr.sisram.cdk.infrastructure.stack.PingLambdaStack;
-import fr.sisram.cdk.infrastructure.stack.PostgresRdsStack;
-import fr.sisram.cdk.infrastructure.stack.VpcStack;
-import fr.sisram.cdk.infrastructure.util.StackUtils;
 import software.amazon.awscdk.App;
-import software.amazon.awscdk.Environment;
-import software.amazon.awscdk.StackProps;
 
 public class InfrastructureApp {
     public static void main(final String[] args) {
@@ -30,7 +25,7 @@ public class InfrastructureApp {
          awsRdsStack.addDependency(awsVpcStack);
          // 4 - Configure Lambda
          */
-        PingLambdaStack pingLambdaStack = new PingLambdaStack(app, "Ping");
+        PingLambdaStack pingLambdaStack = new PingLambdaStack(app, "lambdaping2");
 
     }
 }

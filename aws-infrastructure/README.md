@@ -29,7 +29,7 @@ On the command line:
 * aws login sso --sso-session <<sso_configured_sso>>
 
 # 2 - Bootstrap the region
-* cdk aws://<<aws_account_id>>/<<region>>
+* cdk bootstrap aws://<<aws_account_id>>/<<region>>
 
 # 3 - Deploy your infrastructure
 * cdk deploy --all --verbose --parameters databaseUsername=<<db_username>> -- parameters databasePassword=<<db_password>>

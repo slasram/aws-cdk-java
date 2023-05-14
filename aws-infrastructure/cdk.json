@@ -13,7 +13,7 @@
     ]
   },
   "context": {
-    "AWS::AccountId": "732886658737",
+    "AWS::AccountId": "",
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": [
